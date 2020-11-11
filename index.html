@@ -1,6 +1,44 @@
 <!DOCTYPE html>
 <head>
 
+  <script type="text/javascript"
+  src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+  <script>
+$("document").ready(function() {
+    $("a").click(function () {
+        var popID = $(this).attr("class");
+        var tarDiv = $("div." + popID);
+
+        var popMargTop = (tarDiv.height() + 10) / 2;
+        var popMargLeft = (tarDiv.width() + 80) / 2;
+
+        tarDiv.fadeIn()
+            .css({
+                "width": 700,
+                "margin-top": -popMargTop,
+                "margin-left": -popMargLeft
+            });
+
+        var closeA = $("<a href=\"#\" class=\"close\">X</a>");
+        closeA.appendTo(tarDiv)
+            .click(closeMe);
+
+        var fadeDiv = $("<div class=\"fade\" style=\"filter:alpha(opacity=80);\" />");
+
+        fadeDiv.appendTo($("body"))
+            .fadeIn()
+            .click(closeMe);
+
+        function closeMe() {
+            $(".fade , .popup_block").fadeOut(function() {
+                $(".fade, a.close").remove();
+            });
+        }
+
+    });
+});
+  </script>
+
 <title>academic name caller</title>
 <link rel="shortcut icon" href="https://66.media.tumblr.com/tumblr_lkl77c2JW01qfamg6.gif">
 <link rel="alternate" type="application/rss+xml" href="{RSS}">
@@ -34,7 +72,7 @@
         $('.i').click(function(){
             $('.two').hide('slow');
             $('.one').show('slow');
-           
+
         });
     });
 </script>
@@ -44,26 +82,59 @@
         $('.ii').click(function(){
             $('.one').hide('slow');
             $('.two').show('slow');
-           
+
         });
     });
 </script>
 
 
-
 <style type="text/css">
+
+
+.popup_block{
+    display:none;
+    background: #ffffff;
+    padding:20px;
+    position:fixed;
+  top: 300px; left: 1100px;
+    z-index: 99999;
+    line-height:20px;
+    width: 700px;
+    height: 700px;
+    overflow-y: scroll;
+
+}
+
+*html .fade {position: absolute;}
+*html .popup_block {position: absolute;}
+
+.fade {
+    display:none;
+    position:fixed;
+    left:0px;
+    top: 0px;
+    width:100%;
+    height:100%;
+    z-index:9999;
+    background: #000; /* change to #fff for solid white */
+    opacity:0.5; /* change to opacity:1; */
+}
+.close {
+    color: black;
+}
+
 
 ::-webkit-scrollbar{
     width:4px;
     height:auto;
 }
- 
+
 ::-webkit-scrollbar-thumb{
     width:4px;
     height:auto;
     background:#475d62; /*scrollbar background color*/
 }
- 
+
 ::selection{
     background:#b3eaf7;/*selection background color*/
     color:#475d62; /*selection color*/
@@ -90,8 +161,8 @@ body{
     margin-left:auto;
     margin-right:auto;
     width:650px;
- 
-} 
+
+}
 #asspiss{
        cursor:help;
   color: #FFE500;
@@ -107,7 +178,7 @@ padding-left: 180px;
 font-size: 30px;
     -moz-transition:.4s ease;
     -webkit-transition:.4s ease;
-    -o-transition:.4s ease; 
+    -o-transition:.4s ease;
 }
 .piss{
     font-size: 32px;
@@ -136,7 +207,7 @@ text-shadow: -1px -1px 1px rgba(255,255,255,.1), 1px 1px 1px rgba(0,0,0,.5);
     background-repeat: no-repeat;
       background-position: 20px 350px;
   background-attachment: fixed;
-    border-bottom:1px solid #999; 
+    border-bottom:1px solid #999;
     -moz-transition:.4s ease;
     -webkit-transition:.4s ease;
     -o-transition:.4s ease;
@@ -181,7 +252,7 @@ text-shadow: -1px -1px 1px rgba(255,255,255,.1), 1px 1px 1px rgba(0,0,0,.5);
 }
 
 .fake{
-    border:1px solid #999; 
+    border:1px solid #999;
     margin:10px 0px;
     padding:10px;
     line-height:25px;
@@ -224,12 +295,10 @@ text-shadow: -1px -1px 1px rgba(255,255,255,.1), 1px 1px 1px rgba(0,0,0,.5);
 <div class="shit" title="close">☻</div>
 
 
-
-
 <div class="piss">
     <div class="i button" title="who i am"><span class="gay">BIO</span></div>
     <div class="ii button" title="what i've done"><span class="gay">WORKS</span></div>
- 
+
 </div>
 
 
@@ -245,26 +314,475 @@ text-shadow: -1px -1px 1px rgba(255,255,255,.1), 1px 1px 1px rgba(0,0,0,.5);
 
 <div class="fake"><span class="gay">academic works</span></div>
 
-       <i> <a href="https://docs.google.com/document/d/1tcVb4f0CmiD0PJSN4PyQGaJrNIdHZf4dBUo4kh84WAQ/edit?usp=sharing">morrison's </i>paradise<i> & overlapping stories</a></i> - 
-        <i><a href="https://docs.google.com/document/d/16R5S6cVxwatds-SKhNtUOOx34NclsEfoys3NtIwA3Fc/edit?usp=sharing">ginsberg's</i> howl <i>& context informing texts</a> </i> - 
-        <i><a href="https://docs.google.com/document/d/1_f7y_GK6jPf9VskbRCXwn6EP-10BXl_roDMLmurhOGg/edit?usp=sharing"></i>house of leaves<i> & rhetoric composition</a> </i> - 
-       <i> <a href="https://docs.google.com/document/d/1qA8sEfH0g6B85edyYY3msRfgIUWrXJIkfVLC81HTc0Y/edit?usp=sharing">capitalism & graffiti </a></i>
-        
+       <a class="box1">morrison's paradise & overlapping stories</a> -
+       <a class="box2">house of leaves & rhetoric composition</a> -
+        <a class="box3">ginsberg's howl & context informing texts</a> -
+       <a class="box4">capitalism & graffiti </a>
+
 <div class="fake"><span class="gay">creative works</span></div>
 
-        <i><a href="https://docs.google.com/document/d/1HkRx1R2Tw7AksQQJOfwkovboGRnelllHEEjTsff6iMY/edit?usp=sharing">phonetic alliterative haikus</a></i> - 
-        <i><a href="https://docs.google.com/document/d/1uefXD6vKEZ6Fh5ueB8Qa7vwm9Qm_jhPks9MFatejoq4/edit?usp=sharing">your daily routine</a></i> - 
+        <i><a href="https://docs.google.com/document/d/1HkRx1R2Tw7AksQQJOfwkovboGRnelllHEEjTsff6iMY/edit?usp=sharing">phonetic alliterative haikus</a></i> -
+        <i><a href="https://docs.google.com/document/d/1uefXD6vKEZ6Fh5ueB8Qa7vwm9Qm_jhPks9MFatejoq4/edit?usp=sharing">your daily routine</a></i> -
         <i><a href="https://ak-gallery.tumblr.com/">gallery</a></i>
-        
-        
+
+
 <div class="fake"><span class="gay">multimodal works</span></div>
 
-       <i> <a href="https://creepinessincomics.tumblr.com/">tomie: the demonic feminine</a> </i> - <i> resume available via <a href="https://www.linkedin.com/in/abigail-kriebel/">linkedin</a></i> 
-     
+       <i> <a href="https://creepinessincomics.tumblr.com/">tomie: the demonic feminine</a> </i> - <i> resume available via <a href="https://www.linkedin.com/in/abigail-kriebel/">linkedin</a></i>
+
 </div>
 
 </div></span>
 
+
+
 </div>
 </body>
+
+<div class="box1 popup_block">
+  <p>
+  2 Aug 2019
+  </p>
+  <p>
+  The Spirit in <em>Paradise</em>: Narrative Through Perspective
+  </p>
+  <p>
+  The griot, the keeper of oral tradition, is integral in understanding the inner workings of Toni Morrison’s <em>Paradise. </em>Within her trilogy of historical fiction, she explores how love is not always as gentle and facilitated as white romanticization of the past may be. Each character’s love can be twisted and manipulated, given a body, and even murderous, with a cacophony of different internal motivations and ideologies. The reader only gets to know these characters, though, through an omniscient presence that follows each particular move and thought they make. Through a worldbuilding experience where Morrison complicates these perspectives, without this narrator none of these characters within this world would communicate, and these perspectives would remain fractured.
+  </p>
+  <p>
+   In focusing on the importance of the narrator connecting these characters together and allowing the reader a look into selective perspectives in <em>Paradise, </em>spirituality and the fear of the divine feminine emerges through looks into the intense scare felt by the men in the all black town of Ruby of the women of the Convent, just a few miles away. Ruby - a withering and isolated town, a paradise powered by fear, mirrors the inability to control dissent and revolution from America’s systemic racism. Ruby’s denial of a challenge to the binaries that govern them represent the inherent unsustainability of a society that functions around repression. Morrison, in her creation of characters like Connie, or Consolata, and the society that functions around her at the Convent, embody aspects of African spirituality originating in Brazil, namely Candomblé.  In addition, this spiritual practice is put at odds with the Protestant, almost Puritan practices of Ruby. Religion and spirituality soak the pages of this text, in every street corner and permeating even the character’s names.
+  </p>
+  <p>
+  This intensified light being shone on the spirit realm is not new for Morrison throughout her oeuvre. However, due to the magnitude of characters and how each of their ideas of God influence their responses to individual and historical trauma, many other aspects of the human experience touch the divine. While the women of the convent are focused on healing, and denial of existing society structures that enforce systems of oppression, the citizens of Ruby mirror it. The Convent is the official name of the bullet shaped, promiscuously decorated mansion, but the men of Ruby call it a coven. These Ruby men often conflate these women with unholy figures, and, “...from the men's perspectives, the women, like Eve, embody a loss of innocence and an ejection from the Garden of Eden, the earthly Paradise, a loss the men fear and wish to prevent,” (Krumholz 22). This conflation of the unabashed feminine as demonic is nothing new among patriarchal cultures, but the threat they pose to existing power structures usually seals in their mortal fate at the hands of those who fear them.
+  </p>
+  <p>
+  While Africanist sentiments and spiritualism are floating around within Morrison’s text, <em>Paradise </em>uses this polythesitc, fluid way of thinking and telling to critique the binaries that create power structures within the not entirely fictional realms she imagines. <em>Paradise </em>subverts the implied Catholicism of the Convent and forms it with a connection with a religion it was colonised with, with ideologies that venture beyond good and evil. While some aspects of her historical texts sit in the fantastic, and metaphorical, this tangible application of facets from Candomblé lends analysis of this text to a deeper critique of the gray areas unacknowledged by Ruby’s God fearing population.
+  </p>
+  <p>
+   This intertextual application complicates a text which already raises compelling questions about race, because it also focuses on religion, gender, age, spirituality, and binaries of the human experience overall. Morrison creates a web of these binaries in Ruby, and then shows its citizens an example, with the women of the Convent, of what happens when those boundaries (gender, good/evil, puritanism, old/young) are broken. To complicate the narrative further, each character sees these binaries in different ways and only through these compiled and interacting perspectives explored in <em>Paradise. </em>This web of binaries, however, lends itself to revolt, murder, and implosion due to an inability to form a healthy communtiy, and the spiritualism that challenges it is snuffed out, sealing it’s fate. Not only this, but Ruby’s denial of its own history, in sharp contrast to the Convent, ensure that the narrative of it’s history will not be accurately told, damning Ruby to a twisted facsimile of a memory of the people who survive it.
+  </p>
+  <p>
+  Aspects of spectrality permeate Morrison’s historical trilogy, but in <em>Paradise, </em>rereading lends itself to vastly different ideas pertaining to the events that take hold of the characters it encases. At first, this book seems to detail the all black community of Ruby, rising up against a feminine community. This can be taken as a womanist critique of contemporary society, but the intersections with race, religion, and age play a part in Ruby’s demonization of the Convent women, namely Connie, who denies the Puritan feminine ideal in every sense of the definition.  In Ruby, “...Morrison criticizes the wholesale adoption of Puritan rhetoric because it results in the inversion - not in the deconstruction - of the binary Manichean terms which account for racism and discrimination,” (Marcos 96). Through the spirit who appears to Connie, the founders of Ruby, and Dovey, the reader can see an understanding of the spiritual through different lenses that filter the others around them. Even in Mavis’ uncomfortable interaction with Connie, naked, shows the heed, or lack thereof, that the Convent women have to abandon towards internalized shame. This is further exemplified in the healing rituals, called “loud dreaming,” which caused the women of the Convent to be, “no longer haunted,” (Morrison 266). In Ruby, not only the trauma of women, but the existence of the autonomous woman is a threat.
+  </p>
+  <p>
+  In <em>Paradise, </em>the women of Ruby’s maiden names are not recorded in history books. Patricia Best, a self appointed historian for Ruby, constantly runs into trouble in tracking down the precariously crafted history of the town. Although, "...everything anybody wanted to know about the citizens of Haven or Ruby lay in the ramifications of that one rebuff out of many," she eventually surmises that no one in Ruby dies (Morrison 189). But, no one is born, or, if they are, due to interbreeding and the blood rule, they end up deformed and helpless, like Sweetie’s children. This immortal stasis is remarked upon by scholar Sarah Appleton Aguiar, saying, “...the inhabitants of Ruby...refuse to let go of the past, to let time soften the edges of history's indignities; they deny the processes of death and regeneration,” (514). The inhabitants of Ruby not only refuse this change, they squash any and all possibility of it with the massacre of the Convent women, and the one historian that is dedicated to preserving it is so disgusted by what lays in between the lines that she destroys it.
+  </p>
+  <p>
+  	In framing Patricia as the writer historian of Ruby, one can frame Connie as the historian of oral tradition in the Convent. She makes no attempts to write the trauma laid before her from the other women of the Convent, and keeps it within her. Eventually, she incorporates her knowledge of trauma and spiritualism into a practice coined, ‘loud dreaming,’ where the women are naked and Connie is their “...new and revised Reverend Mother,” (Morrison 265). Connie, as a new and revised version of herself as well as a spiritual figure is strengthened through her connection to the Orisha. The history of the Convent dies with her, but ultimately she ends up in a truer version of Paradise than Ruby could ever imagine.
+  </p>
+  <p>
+  Patrica Best refers to the immortality of the citizens of Ruby as a “deal” with presumably, an unholy being by Ruby’s Protestant standards.  While, at a similar time, Connie refers to her inner ability to prolong life as evil (Morrison 297). These dualities exist beside each other in the Convent as a place of refuge and healing, where stasis is not a desirable stopping point, but a point to move forwards from to a different, more complete state of being. In Ruby, death exists as an ever-looming threat, the abject, and the Convent women’s indifference to death as a polarizing state showcases a debabiliting view of the larger picture of the people and entities that exist in acceptance of death as a state rather than a permanent end.
+  </p>
+  <p>
+  	These ways of thinking are exemplified in even the most progressive religious minds in Ruby, as Reverend Richard Misner often reflects, through his experiences with the Convent women upon his slut-shaming, anti-woman perspective. While he is also critical of the town of Ruby, he reaches an illuminating conclusion that, “...death <em>is </em>life…” (Morrison 160). In this simple statement, Misner grasps at the larger conclusion that the book hints towards in a reading focused on the binaries that conflict with a 19th century spiritualist mindset. These artificial lines drawn in the sand in Ruby at gender, age, and religion unify the women of the Convent.
+  </p>
+  <p>
+  	However, Misner is still confined to Ruby, and his internal questioning and ruminations do nothing to change the actions of the men who murder the Convent women. These men are not only locked into duality pertaining to gender and religion, but also into the realms of ageism and change during the rise of the Civil Rights and Black Power eras. The debate surrounding the oven demonstrates the fear the older generation regards God with Nathan DuPres’ final word on the debate surrounding the change of the town Oven’s slogan, saying that “if you...change...the words in the mouth of that Oven, I will blow your head off just like you was a hooded eye snake,” (Morrison 87). This sentiment over death as the ultimate threat and form of control is connected to and exemplified in the final moments before the men raid the Convent, in the explanation for their actions ending with, simply because they could, that’s what being “an 8 rock meant to [the men],” (297). The strife between the older and younger generation has roots that mirror the frustrations that the Black Power activists of a similar time felt at the oppressive power structures keeping them in enforced stasis. Ultimately, this maintaining of this stasis is of the utmost concern of the founding men of Ruby, as it maintains the fragile balancing act of power through which they govern their town.
+  </p>
+  <p>
+  <em>Paradise </em>focuses in on what happens when a feminine community's understanding of death is less constrictive and fear based than a dominant patriarchal society, and the pushback that occurs when women disregard the binaries. Additionally, there are beings that exist outside of life and death in Candomblé, called Orishas. Only the women of the Convent truly accept this nearly cyclical explanation of life and death, but beings that exist outside of life and death are perceived through this binary in the citizens of Ruby’s justification of their existence. While, “...both the Convent and the town of Ruby are described as symbolic tombs, places rife with death,” the apparition gives Connie strength, the founders of Ruby a home, and Dovey a Friend (Aguiar 514). However, their differing understandings of the spiritual lend the trickster Orisha, hypothesized as being the trickster Eshu, appearing in different forms. This fluidity in the apparitions of Eshu reflect a larger theme of shift in Candomblé as a whole.
+  </p>
+  <p>
+  An African religion existing in Brazil, and more broadly other African religions exist under constant rewrites in a tradition passed down orally. Candomblé, in order to exist, had to adapt a form of survivance in connecting their deities with Catholic iconography. Theorist Stephen Selka expands upon this, saying, “...claims to authenticity surrounding Candomblé have been staked by an increasingly wide variety of agents—including government officials, social activists, college professors, and tour guides—and have been mediated by an expanding array of means of representation,” (5). The shifting nature in interpretation in this way of understanding the world and energies within and outside of it reflects a deeper importance of looking at what appears to be a polarizing stance and recognizing the ever-changing perceptions as each person's individual truth.
+  </p>
+  <p>
+  	In addition to Candomblé’s presence within Connie’s ability to manipulate the light within people, or <em>Aṣẹ </em>of West African philosophy and Yoruba, a newer way of thinking analogous to Candomblé. In looking at Lone as a sort of bridge between the world of Ruby and the Convent, she also awakens Connie’s spiritual powers. Lone exists as a denial of the very binary that separates Ruby and the Convent, in her attempts to stop the men from murdering the women. She sparks an evolution in Connie, and in the summarization from Lindsay M. Christopher:
+  </p>
+  <p>
+
+       “So while Consolata and Deacon's failures are failures to make room in...ideological, space for knowledge beyond themselves (although Connie eventually does under Lone's instruction) those spaces creep in at the end of the novel when Reverend Misner and Anna see the window, or door in the garden of the Convent, begin to ask the right questions of space: ‘What would happen if you entered? What would be on the other side?’.... It asks the right questions of space - the questions that lead us to imagine new worlds,” (95).
+  </p>
+  <p>
+  These questions that Misner and Anna pose are answered in the final paragraphs of the novel, in what could be considered the evolution of paradise in the shores with Piedade, a black goddess figure. This imagining of a new world is exemplified in the failure of Ruby, and the murder of the Convent.
+  </p>
+  <p>
+  This theme of an ever present shifting of understanding based on the person telling the story is reflected in the way Morrison composes her historical trilogy. Her inclusion of spirituality in these texts is expanded in <em>Paradise </em>in its larger critique of the binary in which the people of Ruby experience it. Morrison, in <em>Beloved </em>explores the concept of rememory and the importance of heeding the past while moving forward from it. However, in <em>Paradise, </em>she explores this to the extreme in the mirror Ruby reflects an inversion of American society into.  She acknowledges the importance of healing, specifically feminine healing in the Convent women, but underlines what happens in forgetting and imitating the constraints of systems of oppression in Ruby. In short, “Morrison pays respect to tradition, but she sees social agility as the more essential human asset,” (Furman 93). Not only social agility, though, but ideological and gender based mobility in specific. Additionally, the spirituality that filters these interactions strikes such specific fear into the hearts of the powerful men in Ruby that they eradicate it, disappearing the bodies of these women that only wanted to heal.
+  </p>
+  <p>
+  These binaries and how they oppose communities comes from a place of badly placed weight on the existing power structures in America. Ruby’s isolationist society places each character within their own walls, unable to be recorded by Patricia Best, or any other citizen not in a position to write themselves into history favorably. In oral tradition, these stories are fluid and take on pieces of the people that tell them, and through the several instances of the spiritual in <em>Paradise </em>the very duality between life and death are blurred in apparitions that exist outside of them. In creating and imagining new communities that reward healing, the Convent is isolated, despite the men of Ruby’s perception of them as witches. In reality, the understandings that surround <em>Paradise </em>are anything but black and white.
+  </p>
+  <p>
+  Bibliography
+  </p>
+  <p>
+
+      Aguiar, Sarah Appleton. “‘Passing on’ Death: Stealing Life in Toni Morrison's ‘Paradise.’” <em>African American Review</em>, vol. 38, no. 3, 2004, pp. 513–519. <em>JSTOR</em>, <a href="http://www.jstor.org/stable/1512451">www.jstor.org/stable/1512451</a>.
+  </p>
+  <p>
+
+      Christopher, Lindsay M. “The Geographical Imagination in Toni Morrison's ‘Paradise.’” <em>Rocky Mountain Review</em>, vol. 63, no. 1, 2009, pp. 89–95. <em>JSTOR</em>, <a href="http://www.jstor.org/stable/27670843">www.jstor.org/stable/27670843</a>.
+  </p>
+  <p>
+
+      Furman, Jan. “Utopia and Moral Hazard: Paradise.” <em>Toni Morrison's Fiction: Revised and Expanded Edition</em>, Revised ed., University of South Carolina Press, Columbia, South Carolina, 2014, pp. 93–109. <em>JSTOR</em>, <a href="http://www.jstor.org/stable/j.ctv6wgck3.11">www.jstor.org/stable/j.ctv6wgck3.11</a>.
+  </p>
+  <p>
+
+      Krumholz, Linda J. “Reading and Insight in Toni Morrison's Paradise.” <em>African American Review</em>, vol. 36, no. 1, 2002, pp. 21–34. <em>JSTOR</em>, <a href="http://www.jstor.org/stable/2903362">www.jstor.org/stable/2903362</a>.
+  </p>
+  <p>
+
+      Marcos, Ana Mª Fraile. “The Religious Overtones of Ethnic Identity-building in Toni Morrison's ‘Paradise.’” <em>Atlantis</em>, vol. 24, no. 2, 2002, pp. 95–116. <em>JSTOR</em>, <a href="http://www.jstor.org/stable/41055073">www.jstor.org/stable/41055073</a>.
+  </p>
+  <p>
+
+      Selka, Stephen. “Mediated Authenticity: Tradition, Modernity, and Postmodernity in Brazilian Candomblé.” <em>Nova Religio: The Journal of Alternative and Emergent Religions</em>, vol. 11, no. 1, 2007, pp. 5–30. <em>JSTOR</em>, <a href="http://www.jstor.org/stable/10.1525/nr.2007.11.1.5">www.jstor.org/stable/10.1525/nr.2007.11.1.5</a>.
+  </p>
+</div>
+<div class="box2 popup_block">
+  <p>
+  Multimodal Texts And The Work They Do:
+  </p>
+  <p>
+  An Analysis of <em>House of Leaves </em>
+  </p>
+  <p>
+
+  <hr>
+  </p>
+  <p style="text-align:right">What if?
+  </p>
+   <p style="text-align:center">I formatted all the words, in my entire paper
+  </p>
+  <p>
+  across the page,
+  </p>
+  <p>
+  										Like this?
+  </p>
+  <p>
+  What work would it do? How would it affect my meaning? Presumably, not by much. But, if I posed a narrative like this: <br><center><img width "450px" src="https://i.ibb.co/yR0D7Qp/hol-embed.png" alt="hol-embed" border="0"></center><br>Through moving and transferring the text on the digital canvas, I’ve created a fragmentation that goes along with the narrative. This adds another facet to the experience of this text. It draws the reader in, making them move and engage with the words on the page in order to comprehend them in an uncommon way. I’m sure the reader, looking at the thumbnail of the first page of this essay on Google Drive is wondering what the hell is going on here, and that is my goal.
+  </p>
+  <p>
+  INTRODUCTION
+  </p>
+  <p>
+  By maneuvering the text around, fragmenting the margin and format, the search for meaning of the text gets more chaotic, thus adding to the overall experience of the exchange between reader and text. Many texts use this sense of constraint to appeal to a reader's thirst for multimodality in a world of flat, static novels. A prime example of this mode of storytelling would be <em>House Of Leaves, </em>by Mark Z. Danielewski, published in 2000. Through use of overlapping footnotes, ‘holes’ through pages, pages with only a few words on them, and many other subversions of traditional format, he creates a revolutionary, interdisciplinary, and refreshingly dynamic text. These subversions lend themselves to curiosity on the reader’s part. If the reader chooses, they can peruse the superfluous, often overlapping footnotes, as well as two thick appendixes provide answers, but also beg even more questions. Danielewski, rather than persuading the reader, forces them to feel the words through format. The purpose of this text, at first, seems to aim to scare the reader. Going deeper, however, one can surmise that Danielewski aims to scare the readers through an intertextual experience assembled in a way that makes them uncomfortable, but unable to stop engaging. Finally, this mode of telling subverts the traditional pursuit for meaning in novels through forceful exchange. He shows in this text that the mode in which a story is told can have a direct effect on the work it does; it strengthens the meaning through subverting the method of telling. This achievement caused a ripple that, seventeen years later, is still felt in a variety of fields and disciplines today.
+  </p>
+  <p>
+  TERSE SUMMARY
+  </p>
+  <p>
+  ‘Engaging with’ rather than simply ‘reading’ is the most apt way to qualify the experience this text provides. It forces the audience to not only read, but to think, reference, and understand the numerous plotlines competing for space on each page. If one had to boil the plot down, there are two narratives taking place on the same page, but not the same point in time. Essentially, a couple moves into a house that is bigger on the inside than the outside. A man named Zampano assembles accounts of this phenomenon, then dies. Johnny Truant finds his corpse and these records and gathers them up, adding footnotes indeterminately. Throughout the novel, this changes as various accounts of the events are added as the plot progresses. Zampano also comments with footnotes, leading the reader to texts both fictional, and nonfictional. This is supplemented by appendices, and references to works of music, and many other atypical methods of telling.
+  </p>
+  <p>
+  DISREGARD FOR TRADITIONAL NARRATIVE
+  </p>
+  <p>
+  You’ve heard of subplots, but what about two simultaneous narratives/plots? On the same page? Intertwined? Both connected, but not transpiring at the same time or from the same people? With academic citations? That uses other stories to further its own narrative? Can you name a text that does all of that? Didn’t think so. There are many texts that challenge the traditional mode of storytelling<sup id="fnref1"><a href="#fn1" rel="footnote">1</a></sup> even before postmodernism, or now, ‘post-postmodernism’. Through the filter of chaos, the meaning of an otherwise bland assortment of accounts makes them more impactful due to the unconventional assignment of meaning. Though this text switches around words on the page, by definition ‘multimodal’ means that a text has to use more. Luckily, there’s multiple thick appendices containing copies of letters, maps, and references to all five senses. This adds to the overall meaning because likely, the reader has not experienced a book that makes them flip around to gain understanding of what the narrative is. Even when there’s one or two words per page, the reader is experiencing this as if someone is choking out these words to them, which elevates the fear and tangibility of the narrative. Danielewski disregards the epideictic, deliberative and forensic meaning of the text and will assemble all of them on the same page, or one, through use of signals such as footnotes to look for meaning or clarification at the bottom, side, or upside down portion of the page.
+  </p>
+  <p>
+  INTERTEXTUALITY, ASSEMBLAGE
+  </p>
+  <p>
+  	These footnotes not only tell a story, but force the reader to acknowledge the context surrounding Zampano and Truants observations and thoughts. This novel could itself be considered a rich feature due to it’s incredibly high contextual value and unique linguistic integrity. There are copious references to other texts that enhance the meaning. For instance, a quote from Beethoven’s notes in the margin of his String Quartet No. 16 on the first page of the novel, “Muss es sein?” or, in English, “Must it be?”. This vicarious opening to the events of the novel leaves an ambiguous meaning that is expanded upon as the narrative progresses. In other words, this intertextual statement contributes to intratextuality, or foreshadowing of events to come. It makes the reader ask “What must be?” to start out the book. Correspondingly, this novel, and the copious citations within, exemplify the moves made by Charles Bazerman in his piece, “Intertextuality: How Texts Rely on Other Texts” in that it mainly relies on both real and unreal works of text to contribute to, and sometimes completely provide meaning to the reader. This novel, however, makes use of recontextualization in a unique way as it uses iconic texts, such as Dante’s Inferno, the Greek mythology surrounding Echo, a full page of photographer references, and many other seemingly unrelated texts to further the reader’s understanding of the house, the meaning, and narratives surrounding it.
+  </p>
+  <p>
+  AMBIGUITY, “HOUSE”
+  </p>
+  <p>
+  Due to the nature of this assemblage, the reader must search for meaning in places one normally would not have to look when reading a traditional horror novel. Truant and Zampano only interact through their footnotes; by the time Truant reads Zampano’s words, Zampano is already dead. This method of telling lends itself to conclusions that one would not normally make, through idiosyncratic approaches unique to this book. This could be through following Truant’s footnote to gain meaning and empathy from another reader, but the meaning one gains from this text is, more so than other texts, based upon the reader's prior experience of multimodal texts, photography, mythology and many other things one would not expect to draw on when reading a novel. For instance, Danielewski uses the color blue every time the word house, in any language appears. One could speculate that this has to do with chroma keying, but it’s difficult to be sure as full color editions of House Of Leaves have entire sections in red, and other words in purple. The ambiguity in many facets of this book make it more frightening, as nothing is scarier and more intriguing than a mystery. Danielewski gives the reader enough to understand the narrative, but not many of his choices, and this is what makes the novel so unique. Some aspects of it are very difficult to analyze.
+  </p>
+  <p>
+  CONCLUSION
+  </p>
+  <p>
+  The work for not only the English field of study, but many others this text does is immensely vast. It is an interdisciplinary, vague, and striking tale of not one, but several people unknowingly working together to create a striking, horrifying assemblage of text. The only foreseeable shortcoming of this text is that not everyone would want to put in the work to wholly understand it. This paper fails in completely surmising the text because it would take much more than 1,500 words to even scratch the surface of the work this text does. As can be seen throughout this paper, Danielewski takes a book and makes into something that weaves itself into the framework of multimodality. All the concepts this English class has covered are addressed or exemplified in this text, and this paper only goes through a few. Hopefully, the next paper can address a few more. All in all, this is a text which could be the basis for an entire field of study.
+  </p>
+  <p>
+
+  </p>
+  <p>
+
+  </p>
+  <p>
+  Works Cited<br>
+  </p>
+  <p>
+
+          Barton, Ellen. "Linguistic Discourse Analysis." <em>What Writing Does and How It Does It: An Introduction to Analyzing Texts and Textual Practices</em>. By Charles Bazerman and Paul A. Prior. N.p.: Routledge, 2009. N. pag. Print.<br>
+  </p>
+  <p>
+
+          Bazerman, Charles. "Intertextuality: How Texts Rely on Other Texts." <em>What Writing Does and How It Does It: An Introduction to Analyzing Texts and Textual Practices</em>. By Charles Bazerman and Paul A. Prior. N.p.: Routledge, 2009. N. pag. Print.<br>
+  </p>
+  <p>
+
+          Danielewski, Mark Z. <em>Mark Z. Danielewski's House Of Leaves</em>. N.p.: Pantheon, 2010. Print.
+  </p>
+
+  <!-- Footnotes themselves at the bottom. -->
+
+  <h2>Notes</h2>
+  <div class="footnotes">
+  <hr>
+  <ol><li id="fn1">
+  <p>
+       See: “Ordeal by Cheque” and <em>Crank </em>by Ellen Hopkins&nbsp;<a href="#fnref1" rev="footnote">&#8617;</a>
+
+  </ol></div>
+</div>
+<div class="box3 popup_block">
+  <p>
+  Kriebel
+  </p>
+  <p>
+  14 April 2019
+  </p>
+  <p>
+  BEATING ABSTEMIOUSNESS OUT OF THE FLOWER CHILDREN: GINSBERG’S HOWL & HEDONISM
+  </p>
+  <p>
+  <strong>INTRODUCTION</strong>
+  </p>
+  <p>
+  The three part poem <em>Howl </em>by Allen Ginsberg, one of the ‘big three’ in the Beat generation, sets the foundation for subversive, visceral scream against the systemic inequality of heteronormative capitalism. With around 112 lines of Whitman-esque word soup, at varying meters and lengths, at times this poem almost crosses the lines into a prose. This run on sentence turned poetry denies previous, conventional ‘English’ poetry and takes style and prosody into the next generation. Composed of three sections, Ginsberg rails against the dominant culture in the first section in positively reframing the ‘degenerate’ subjects of his poems. Then, in the second section, he outlines <em>what </em>is sabotaging the subjects of his poem. Finally, in the third and last section, the lines are notably shorter, but the poem shifts into a still mobile, but constant setting of Rockland, a mental institution and home to Carl Solomon, Ginsberg’s friend.
+  </p>
+  <p>
+  This poem overcame the initially violent pushback against it, and the attempts of governmental censorship, pushing back at barriers that have already been broken through with this cultural caterwaul. Through emotional appeal, (and repulsion, in the case of the United States government) to a culture rapidly shifting, this poem did the work of normalizing a subversive form of poetry that contributed to the foundation of counterculture of the anteceding generation. However, while <em>Howl </em>in separation from it’s author does great work, in conjunction with Ginsberg’s intensely problematic personal beliefs that are not mentioned, the importance and notoriety of this author is irreparably sullied.
+  </p>
+  <p>
+  <strong>HISTORY & CONTEXT </strong>
+  </p>
+  <p>
+  <em>“Prepubescent boys and girls don’t have to be protected from big hairy you and me, they’ll get used to our lovemaking in two days provided the controlling adults will stop making those hysterical noises that make everything sexy sound like rape,”.</em>
+  </p>
+  <ul>
+
+  <li><em>Allen Ginsberg, in Deliberate Prose: Selected Essays 1952-1995.</em>
+  </li>
+  </ul>
+  <p>
+  First and foremost, Allen Ginsberg is a pedophile. He was a founding and most famous member of NAMBLA, or the North American Man/Boy Love Association. He created a poem called <em>Sweet Boy Give Me Yr Ass</em>. In the 1960s, Ginsberg bragged publicly about masturbating to images of young boys, harassed and sexualized Andrea Dworkin’s 12-13 year old son & friends at his bar mitzvah<sup id="fnref1"><a href="#fn1" rel="footnote">1</a></sup>, and put out a ‘joke’ ad in the newspaper asking for a underage male assistant (Benton 191). This analysis explores <em>Howl </em>as both a separate work from Ginsberg as well as within its larger cultural impact, but Ginsberg’s pedophilia is a perception altering fact about him that does not make an appearance on his Wikipedia page until much down the page, or is even mentioned <em>at all</em> in his Poetry Foundation biography. So, this fact will take precedence at the beginning of this essay. While <em>Howl </em>is an important normalization of homoeroticism and anti-capitalist sentiments, the latent ideology that Ginsberg was pushing around pederasty and child rape is, and continues to be, uncondonable and reprehensible.
+  </p>
+  <p>
+  Moving forward to wider, more relevant, and less depressing contexts, The Beat Generation refers to the poets and minds of the 1950s consisting mainly of ‘the big three’: Allen Ginsberg, William S. Burroughs, and Jack Kerouac. They, in their respective works, argued for liberation in a homo- and heterosexual manner, from capitalism, from war, and relished in relative non-conformity to the dominant, conservative culture of the fifties. Influencing these minds, mainly Ginsberg’s, was Walt Whitman’s poetic structure and latent homosexuality, in that his works influences much of the structure of <em>Howl. </em>Additionally, Neal Cassady, a forgotten but important figure in the Beat movement was sexually involved with Ginsberg intermittently for twenty years. In stark contrast to Whitman’s work, though, <em>Howl </em>showcases a degree of homoerotic, hedonistic, and deliciously blasphemous erotic text in a <em>much </em>clearer way.
+  </p>
+  <p>
+  This poem, and prolific authors and creators were heavily inspired by dada, or dadaism, an art movement that started in New York around 1915. Before this, in 1913, there was the ‘anti-art’ movement. This self contradictory movement explored perception and challenged the notions of what the general public considered art. It could be argued, and has been, that <em>Howl </em>is subversive in this same way, because it <em>is </em>identifiable as poetry due to it’s drawing from Whitman’s long lines. However, the subject matter redefined it, in the conservative 1950’s America headcanon, as blasphemous smut.  In the same vein of Marcel Duchamp’s 1917 ‘readymade’ sculpture, <em>Fountain</em>, both works were subjected to the dominant culture attempting to classify them as non-art.
+  </p>
+  <p>
+  <strong>CENSORSHIP, PUSHBACK</strong>
+  </p>
+  <p>
+  This pushback, arguably, increases the contextual meaning in <em>Howl </em>and other works in the same movement, and movements following. There’s a degree of mystique, of inherent artsiness in the works of a counterculture movement. The tangible resistance in the lines of poetry or prose is only potentiated by the vitriol of others. In other words, if the dominant culture accepted hedonistic areleligious psychotic ramblings as a normal part of the culture, what would this poem rail against? Ginsberg outlines in his journal, that, “...since art is merely and ultimately self-expressive, we conclude that the fullest art, the most individual, uninfluenced, unrepressed, uninhibited expression of art is true expression and the true art,”<sup id="fnref2"><a href="#fn2" rel="footnote">2</a></sup>. This begs the question, if one’s expression is not subversive, is it still art? Is an expression that aligns with the dominant culture truly art, or is it a repressive, reductionist form of art? Despite winning in the California State Superior Court, because of the poems apparent ‘social importance’, many later broadcasts of the poem were difficult due to FCC regulations. The ‘art’ of <em>Howl, </em>in part, comes from the challenge it poses to critics and readers to categorize and censor it.
+  </p>
+  <p>
+  <strong>COMMUNISM AND DRUG CULTURE</strong>
+  </p>
+  <p>
+  <strong>	</strong>There’s overt anti-capitalist sentiments running throughout this poem, and with the rampant sex and other various sins it’s no surprise that such a subversive poem would warrant the attempted banning by the U.S. government. In how Ginsberg reframes what American’s in the 50’s would call ‘undesirables’ or ‘delinquents’ Ginsberg praises, starting off the poem calling them the, “best minds of [his] generation,” (line 1). This reframing legitimizes alternative lifestyles to the reader in a way that was unexplored in the dominant culture. In addition, Ginsberg and his publisher said across several interviews that Howl was inspired by a peyote vision, a drug used as a psychedelic as well as in spiritual practices and religions, and that the second section was written <em>while </em>he was on peyote.<sup id="fnref3"><a href="#fn3" rel="footnote">3</a></sup> Interestingly enough, despite not being a registered communist, Ginsberg was one of the only Beat poets that was an ardent socialist, despite most of them expressing anti-capitalist ideals. This, rumoredly is a source of conflict between Kerouac and Ginsberg, who was distrustful of communism, and Ginsberg, or, as he is called in Kerouac’s<em> On the Road, </em>“Carlo Marx’.
+  </p>
+  <p>
+  <strong>LITERARY ANALYSIS</strong>
+  </p>
+  <p>
+  This poem is likely one of the longest relatively contemporary works that any reader has processed or heard of. That is, unless they are an ardent fan of poetry. Even so, this poem is unique in not only its length, but it’s composition, prosody, and phonetic appeal. Ginsberg’s appeal to the audiences <em>pathos </em>not only comes from the visceral way in which the poem is written, but also the way that Ginsberg says it should be read. Even though those initial lines are so long, he says that each line is supposed to be said in one breath; like the speaker is angry, exasperated, and is outpouring these emotionally laden words to the reader.
+  </p>
+  <p>
+  Especially in it’s later parts, Ginsberg’s text takes a lot of imagery from mental hospitals due to his history in them,  a visceral setting addressed to his friend, Carl Solomon, who is still in ‘Rockland’ the fictional moniker of the Columbia Presbyterian Psychiatric Institute. The original, full title of this poem is actually <em>Howl for Carl Solomon</em>. As this is more of a guttural scream than a poem, the idea this is dedicated to a friend softens these lines laced with anger. There are references to many of Ginsberg’s friends and lovers, notably Neal Cassady, the, “...secret hero of these poems,” (line 43). As Ginsberg did not expect the vast notoriety and readership surrounding this poem, there are references to friends and ideas that are difficult to contextualize without sufficient research and analysis.
+  </p>
+  <p>
+  There are several references to Christianity in this poem, and in one line, even references having sex with an angel (line 39). There’s allusion to many varying religious figures from different dogmas, and many people in the poem that are the objects of sexual desire (motorcyclists, sailors) are framed as ‘saints’ (lines 36-37). In a notable section, Ginsberg references Moloch, a false idol in Hebrew culture in which children were burned as sacrifices for. He frames this figure very negatively, and in this context, Moloch refers to America’s propensity for war, capitalism, consumerism, and the whole of conservative American culture. There are also nods to Islam in his mention of Mohammed in his polytheistic orgy of a poem. This deviation from dominant, monotheistic Christianity intensifies the resistive power of Ginsberg’s prosody.
+  </p>
+  <p>
+  <strong>CONCLUSION</strong>
+  </p>
+  <p>
+  This poem, and the work it does, is difficult to separate from Ginsberg’s normalization of pedophilia, despite its lack of overt mention in <em>Howl. </em>While the work that it did in the vein of anti-censorship, anti-capitalism, and homosexuality is vast, it is important to separate the work from the author in defining the texts social impact. If <em>Howl </em>was written by a different, non-pedophilic author, this analysis would probably include more biographical context on the author and the other works he did, but Ginsberg’s <em>Sweet Boy Give Me Yr Ass, </em>and other endorsements of pedophilia in letters and journals overshadow the cultural importance of this poem and others of his.
+  </p>
+  <p>
+  It is illuminating that instead of jailing Ginsberg or censoring his works glorifying pedophilia, he is rather vilified for his depictions of homosexuality in a time where sodomy was still illegal. His <em>actual rapist tendencies </em>take a backseat in the countercultural collective memory. <em>Howl </em>has a lot to unpack as a poem, but a child rapist who wrote a great piece of literature, at the end of the day, is still a child rapist. Just because Ginsberg challenges conventions about homosexuality, religion, and sex, does not mean he’s the countercultural icon readers and literature majors make him out to be.
+  </p>
+  <p>
+
+  </p>
+  <p>
+  <strong>REFERENCES</strong>
+  </p>
+  <p>
+
+        “Allen Ginsberg - Poet Biography.” <em>Poets.org</em>, Academy of American Poets, 4 May 2016, www.poets.org/poetsorg/poet/allen-ginsberg.
+  </p>
+  <p>
+
+        Clark, Thomas. “Allen Ginsberg, The Art of Poetry No. 8.” <em>The Paris Review</em>, 5 Sept. 2018, <a href="www.theparisreview.org/interviews/4389/allen-ginsberg-the-art-of-poetry-no-8-allen-ginsberg">www.theparisreview.org/interviews/4389/allen-ginsberg-the-art-of-poetry-no-8-allen-ginsberg</a>.
+  </p>
+  <p>
+
+        Miles, Barry (2001). <em>Ginsberg: A Biography</em>. London: Virgin Publishing Ltd. <a href="https://en.wikipedia.org/wiki/International_Standard_Book_Number">ISBN</a> <a href="https://en.wikipedia.org/wiki/Special:BookSources/978-0-7535-0486-4">978-0-7535-0486-4</a>.
+  </p>
+  <p>
+
+        Perloff, Marjorie. “Allen Ginsberg by Marjorie Perloff.” <em>Poetry Foundation</em>, Poetry Foundation, 1 July 2013, www.poetryfoundation.org/poetrymagazine/articles/70013/allen-ginsberg.
+  </p>
+  <p>
+
+        Staton, Scott. “Neal Cassady: American Muse, Holy Fool.” <em>The New Yorker</em>, The New Yorker, 19 June 2017, <a href="www.newyorker.com/books/page-turner/neal-cassady-american-muse-holy-fool">www.newyorker.com/books/page-turner/neal-cassady-american-muse-holy-fool</a>.
+  </p>
+  <p>
+
+         Young, Allen (1973). <em>Allen Ginsberg: the </em>Gay Sunshine<em> Interview</em>. Bolinas, California: Grey Fox Press. p. 1.
+  </p>
+  <p>
+
+        Z, Mickey. “Beat Writer Pedophiles and the White Male Leftists Who Love Them | Mickey Z.” <em>World News Trust</em>, 28 Jan. 2019, worldnewstrust.com/beat-writer-pedophiles-and-the-white-male-leftists-who-love-them-mickey-z.
+  </p>
+  <p>
+
+  </p>
+  <p>
+  <strong>WRITING REFLECTION</strong>
+  </p>
+  <p>
+  When I was composing this, I actually forgot that Ginsberg was a pedophile, and I wasn’t reminded until about <em>an hour </em>into my research in hunting through Wikipedia’s reference for first person interviews and texts pertaining to Ginsberg. I actually started the rough draft of this without this in the front of my mind. Compositionally, this was a favorable outcome because it allowed me to seperate <em>Howl </em>from the scummy piece of human garbage that Ginsberg embodies. All of my references are not cited as they are for the reader, as well as myself, to provide more biographical information on Ginsberg and his constituents. I’m really angry that <em>Sweet Boy Give Me Yr Ass</em> was forcibly recontextualized in my mind into a disgusting narrative of a pedophile’s sexual experience rather than a gritty depiction of homoerotic sex. I’m worried that this paper hyper fixates on Ginsberg’s pedophilia, but as this is an influence on the rhetorical content, as well as the context, that Ginsberg constructs, and no other notable sources really prioritize this, I think the work my paper does in highlighting this as well as the <em>actual </em>analysis of <em>Howl </em>is balanced.
+  </p>
+
+  <!-- Footnotes themselves at the bottom. -->
+
+  <h2>Notes</h2>
+  <div class="footnotes">
+  <hr>
+  <ol><li id="fn1">
+  <p>
+     Excerpt from Andrea Dworkin’s autobiographical book <em>Heartbreak, retrieved via <a href="https://worldnewstrust.com/beat-writer-pedophiles-and-the-white-male-leftists-who-love-them-mickey-z">this article </a>and also mentioned in Nicholas Benton’s book, Extraordinary Hearts:</em>
+  <p>
+    <em>.</em>
+  <p>
+    “But in fact, [Ginsberg] was a pedophile. He did not belong to the North American Man/Boy Love Association out of some mad, abstract conviction that its voice had to be heard. He meant it. I take this from what Allen said directly to me, not from some inference I made. He was exceptionally aggressive about his right to fuck children and his constant pursuit of underage boys. I did everything I could to avoid Allen and to avoid conflict. This was my godson’s day. He did not need a political struggle to the death breaking out all over. Ginsberg would not leave me alone. He followed me everywhere I went from the lobby of the hotel through the whole reception, then during the dinner. He photographed me constantly with a vicious little camera he wore around his neck. He sat next to me and wanted to know details of sexual abuse I had suffered. A lovely woman, not knowing that his interest was entirely pornographic, told a terrible story of being molested by a neighbor. He ignored her. She had thought, “This is Allen Ginsberg, the great beat poet and a prince of empathy.” Wrong. Ginsberg told me that he had never met an intelligent person who had the ideas I did. I told him he didn’t get around enough. He pointed to the friends of my godson and said they were old enough to fuck. They were 12 and 13. He said that all sex was good, including forced sex.”&nbsp;<a href="#fnref1" rev="footnote">&#8617;</a><li id="fn2">
+  <p>
+     The origin of this quote is incredibly obfuscated, but I think it’s from <em>The Book of Martyrdom and Artifice: First Journals and Poems, 1937-1952 </em>by Allen Ginsberg,  Bill Morgan, Juanita Lieberman-Plimpton, but it’s cited as:
+  <p>
+    <strong>“Allen Ginsberg - Poet Biography.” <em>Poets.org</em>, Academy of American Poets, 4 May 2016, www.poets.org/poetsorg/poet/allen-ginsberg.</strong>&nbsp;<a href="#fnref2" rev="footnote">&#8617;</a><li id="fn3">
+  <p>
+     Ginsberg, Allen. "Notes Written on Finally Recording 'Howl.'" <em>Deliberate Prose: Selected Essays 1952-1995</em>. Ed. Bill Morgan. New York: Harper Collins, 2000.
+  <p>
+    Bill Morgan, <em>The Typewriter Is Holy: Complete, Uncensored History of the Beat Generation</em> (New York: Free Press, 2010), pp. 86-87. &nbsp;<a href="#fnref3" rev="footnote">&#8617;</a>
+
+  </ol></div>
+</div>
+
+  <div class="box4 popup_block">
+
+<br><br>
+<p>
+GRAFFITI AND LIBERAL COMMUNIST PROPAGANDA: THE ARMCHAIR ACTIVISM OF ART THEN & NOW
+</p>
+<p>
+10 May 2019
+</p>
+<p>
+Abstract:
+</p>
+<p>
+This paper takes a look into the countercultural movement that was not just easily accessible to, for the most part, financially and spatially mobile white people. This ‘counterculture’ really popularized and normalized neoliberal ‘activism’ in privileged spaces. I want to argue that the hippie movement catalyzed a ‘capitalist counterculture’ for those privileged enough to not question the systemic inequity of the country they live in. Around the time of Woodstock, the first modern graffiti writers, such as Cornbread in Philadelphia, and, a little later, TAKI 183 in New York were rising to prominence. This act of defacing public property, adspaces, and visible walls with one’s moniker, an extension of the self, is in stark contrast the, at times, contradictory communal ideology that permeates the minds of hippies that <em>knew </em>that their movement would be remembered as a cultural milestone. The lack of media coverage that surrounded more radical thinking than the hippie movement was lacking, and if existent, it was biased. This coverage skews the acceptable ways of resisting closer to the center, and discourages the questioning of capitalism in a way that, in graffiti and activist culture, it flourishes. In framing my argument, I use the theory of <a href="https://www.amazon.com/Violence-Sideways-Reflections-Ideas-Small/dp/0312427182">Slavoj Žižek</a>, as he is one of the only philosophers in the modern era detailing the contradictory and contemporary rise of ‘liberal communism’. The watering down of radical thought that happened during the hippie movement is happening now, in graffiti culture, as businesses and <a href="https://www.vice.com/en_us/article/zm8dwx/only-influencers-can-take-photos-at-this-la-mural-and-people-are-pissed">social media influencers</a> commodify the style and genuine intent of this typographical statement of the individual.
+</p>
+<p>
+OPENING THOUGHTS
+</p>
+<p>
+A countercultural movement that was not just easily accessible to, for the most part, financially and spatially mobile white people in the timeframe around Woodstock was the small yet active network of wall writers. The hippie movement catalyzed a capitalist counterculture for those privileged enough to not question the systemic inequity of the country they live in. Around the time of Woodstock, the first modern graffiti writers, such as Cornbread in Philadelphia, and, a little later, TAKI 183 in New York, were rising to prominence.
+</p>
+<p>
+This act of defacing public property, adspaces, and visible walls with one’s moniker, an extension of the self, is in stark contrast the, at times, contradictory communal ideology that permeates the minds of ‘hippies’ that <em>knew </em>that their movement would be remembered as a cultural milestone due to profuse news coverage. Under capitalism, the only truly countercultural form of art comes from a place outside of the system that common ‘hippies’ could seamlessly weave in and out of, at their leisure. Unfortunately, people of color, and people in poverty that were affected by systemic oppression and societal bias chose to produce an artform that has the <em>ethos </em>and <em>pathos </em>of a gut punch to one’s soul; a scream, into the void, demanding to be heard.
+</p>
+<p>
+DILUTED ARTISTS
+</p>
+<p>
+This ‘counterculture’ really popularized and normalized neoliberal ‘activism’ in privileged spaces. This happened in the hippie movement, as detailed by Andrew Potter, and Joseph Heath in <em>Nation of Rebels: Why Counterculture Became Consumer Culture</em>. This sensation is exemplified in for-profit muralists that erase years upon years of paint caked on the walls of city streets, as well as the anti-graffiti coalitions that efface decades of art due to the demographic call for help it represents.
+</p>
+<p>
+RESPONSE
+</p>
+<p>
+The lack of media coverage that surrounded more radical thinking than the hippie movement was lacking, and if existent, it was biased. This fragmented coverage skews the acceptable ways of resisting closer to the center, and discourages the questioning of capitalism in a way that, in graffiti and activist culture, it flourishes. Concisely, “...this collective production of graffiti not only confronts and resists existing arrangements but constructs alternative social, cultural, and economic arrangements as well,” (Ferrell 1). At first, when graffiti was started, similar to the hippie movement, it was framed as a teenage movement of a few delinquents. While the hippie movement was communal and non-violent in nature, after communalism and grass-roots movements took over, it was viewed as more sinister shift due to its tangible resistance of the dominant culture.
+</p>
+<p>
+FRAMEWORK
+</p>
+<p>
+Many artists watch with distaste the rampant watering down of radical thought that happened during the hippie movement that is happening now, in graffiti culture, as businesses and social media influencers commodify the style and genuine intent of this typographical statement of the individual. The search for recognition has mutated into a quest for capital in the monetization of a genuine artistic experience. This is not to say that the pursuit of valuable art is fruitless, but that most art composed with the express purpose of accruing capital feels, to many viewers, ingenuine. In the same vein of the hippie movement, there is a difference between a ‘trippy’ piece of art and a piece of art made while on a trip. In addition, as detailed in the text <em>All Big Letters, </em>an anthology of art and ideological practices that surround graffiti culture, “writers will <em>weaponize </em>anything in the service of their craft,” (20). This weaponization of the ordinary combats the insidious and specialized ways that capitalism attempts to dismantle their alternative forms of expression.
+</p>
+<p>
+CONTEMPORARY CRITIQUES
+</p>
+<p>
+In a fraction under a year, a mural surfaced in Los Angeles, where only verified social media influences could view and document. The piece was tented off, with a bouncer<sup id="fnref1"><a href="#fn1" rel="footnote">1</a></sup>. While this is an extreme example of the commodification of counterculture, this behavior is spreading among profit-hungry writers. Make no mistake, this is no comparison to commision based art-forms, in that one form of labor is to survive, and the other is to silence others voices. This is an intrinsic flaw of resistance while adhering to the system that is intrinsically flawed. The ‘hippies’ were a byproduct of a generation composed of people that partially understand the extent in which the power structure impedes the happiness and autonomy of their fellow American. These critiques are applicable to any commodified counterculture, and especially with the rise of psychedelics, detailed in <em>Heads, </em>hippies were producing genuine, subversive, and usually LSD-fueled art, but it was non-violent, peaceful art. This form of resistance under a systemically violent government, employed by (usually white) people that reaped some privilege from their race, did not do much in the sense of fighting <em>back. </em>(Jarnow 91).
+</p>
+<p>
+REALEST RESISTANCE
+</p>
+<p>
+In terms of tangible, demonstrable methodology that does not dilute the resentment that marginalized persons throw at the system which imprisons and executes them, graffiti  ‘writers’ ego driven screams into the unknown communicate a visceral need to be heard. There are many organizations dedicated to the removal or reduction of graffiti, in addition to the police. Such as, “Graffiti Hurts, an organization devoted to the eradication of graffiti, in detail. By framing graffitists as outsiders and criminals, Graffiti Hurts seeks to justify the erasure of graffiti, and in so doing it reinforces exclusionary representations of culture, community, and landscape,” (1). Basically, this says that graffiti hurts property owners, an oppressive force that usually owns the inadequate housing and transportation these writers live and commute in, and this act of resistance is silenced by capitalists controlling their landscape. These capitalists, if they cannot ‘beat’ the resistance, attempt to commodify it. This, in a theoretical framework, lines up with the concept of a liberal communist, as coined by Slavoj Žižek:
+</p>
+<p>
+
+  “Liberal communists are big executives recuperating the spirit of contest, or, to put it the other way round, counter-cultural geeks who take over big corporations. Their dogma is a new, post-modernised version of Adam Smith’s old invisible hand of the market. Market and social responsibility here are not opposites. They can be reunited for mutual benefit. As Thomas Friedman, one of their gurus, puts it, nobody has to be vile in order to do business …” (15).
+</p>
+<p>
+In this commodification of counterculture, the capitalists always win, and their ideologies and dogmas are upheld through profiteering off the unrestful resistance that people like graffiti writers and hippies employ. In addition, the text <em>Nation of Rebels </em>attributes this to the perceived similarity of consumerism and conformity, and frames (capitalistic) countercultural rebellion as a <em>supporting </em>facet of capitalism and consumerism (66). These ideas, in conversation with one another, and applied to both the hippie and graffiti countercultural movements reach a greater conclusion: that ‘true’ resistance is inherently anti-capitalist.
+</p>
+<p>
+Finally, there is an important subsection of graffiti writers, especially marginalized graffiti writers: women. The studies on gender and graffiti are lacking, as well as gender deviations in general in most countercultural movements, as many are saturated with sexism. However, one particular study expands upon the results of two outdated gender and graffiti studies that,  “...the problem lies not so much with the theoretical view of these articles as with differences in graffiti produced by men and women, and differences in the surrounding social circumstances...consider material produced by women...the importance of examining carefully the social circumstances surrounding all varieties of expressive forms before formulating conclusions,” (Reich 191). Throughout, Reich emphasizes the need for empathy and study surrounding the social conditions that envelop many people, not only women, trying to resist the dominant power structures. However, even within the graffiti community, sexism and homophobia are still present, underlying. While this does not detract much from the movement, women’s graffiti recently has been prioritized and often sexualized in the modern countercultural tincture.
+</p>
+<p>
+CONCLUSION
+</p>
+<p>
+Hippie culture is the dominant counterculture, because capitalist culture and media still attempted to market and appeal to hippies (and it worked!) with night talk shows like The Dick Cavett Show, and this capitalization on counterculture is happening even now with Che Guevara t-shirts and Leninade. There was Harlem Cultural Festival, a series of music concerts held in Harlem, Manhattan, New York City during the summer of 1969 to celebrate African American music and culture and to promote the continued politics of black pride, and no one really covered this massly attended event in the same way that Woodstock did. Additionally, in both Philadelphia and New York, there were several writer meetups, but no one really covered these until later, when it became an “epidemic.” These negative labels are employed by capitalists attempting to vilify alternative forms of career and ideology.  In short, “...labels are generated in response to the institutional imperatives of art worlds or police bureaucracies; they are arbitrary and do not reflect any quality intrinsic to the actors and their products so labeled…” (Lachmann 231). This ‘labeling’ reaffirms the effective nature in which capitalism attempts to shift the layman’s mind, but this ‘label’ also attracts more people to this form of resistance, as being negatively framed by the dominant power structure is a key component of counterculture.
+</p>
+<p>
+A counterculture’s validity is based on how appealing it is to the dominant class, and that determines how the dominant class attempts to monetize it. Saying you hate something and want to change it isn’t enough when there are people dying on the streets. The communities surrounding these marginalized and footnoted voices <em>need </em>to hear these people, and a lot of people simply tune them out. Tersely, graffiti is violence against property, while the hippie movement was the vocal rejection of property. Tagging a cops car, or a landlords door is, to many, a more radical form of resistance than giving him a flower, or singing him a song, or taking money and resources you (but many others do not) and moving out to the country, or going to a concert. It actively combats the systemic violence that surrounds marginalized communities and gives people a form of expression that is currently being commodified by capitalists in the same way as the hippie movement.
+</p>
+<p>
+Works Cited
+</p>
+<p>
+
+      Ferrell, Jeff. “Urban Graffiti: Crime, Control, and Resistance.” <em>Youth & Society</em>, vol. 27, no. 1, Sept. 1995, pp. 73–92, doi:<a href="https://doi.org/10.1177/0044118X95027001005">10.1177/0044118X95027001005</a>.
+</p>
+<p>
+
+      Jarnow, Jesse. <em>Heads: a Biography of Psychedelic America</em>. Da Capo Press, A Member of the Perseus Books Group, 2018.
+</p>
+<p>
+
+      Potter, Andrew, and Joseph Heath. <em>Nation of Rebels: Why Counterculture Became Consumer Culture</em>. HARPER BUSINESS, 2013.
+</p>
+<p>
+
+      Lachmann, Richard. “Graffiti as Career and Ideology.” <em>American Journal of Sociology</em>, vol. 94, no. 2, 1988, pp. 229–250. <em>JSTOR</em>, <a href="www.jstor.org/stable/2780774">www.jstor.org/stable/2780774</a>.
+</p>
+<p>
+
+      - Moreau, Terri, and Derek H. Alderman. “Graffiti Hurts and the Eradication of Alternative Landscape Expression.” <em>Geographical Review</em>, vol. 101, no. 1, 2011, pp. 106–124. <em>JSTOR</em>, <a href="www.jstor.org/stable/41303610">www.jstor.org/stable/41303610</a>.
+</p>
+<p>
+
+      Reich, Wendy, et al. “Notes on Women's Graffiti.” <em>The Journal of American Folklore</em>, vol. 90, no. 356, 1977, pp. 188–191. <em>JSTOR</em>, www.jstor.org/stable/539699.
+</p>
+<p>
+Rushmore, R. J., et al. <em>All Big Letters</em>. Cantor Fitzgerald Gallery, Haverford College, 2017.
+</p>
+<p>
+- Žižek, Slavoj. <em>Violence: Six Sideways Reflections</em>. Profile, 2008.
+</p>
+
+<!-- Footnotes themselves at the bottom. -->
+
+<h2>Notes</h2>
+<div class="footnotes">
+<hr>
+<ol><li id="fn1">
+<p>
+   <a href="https://www.vice.com/en_us/article/zm8dwx/only-influencers-can-take-photos-at-this-la-mural-and-people-are-pissed">https://www.vice.com/en_us/article/zm8dwx/only-influencers-can-take-photos-at-this-la-mural-and-people-are-pissed</a>&nbsp;<a href="#fnref1" rev="footnote">&#8617;</a>
+
+</ol></div>
+  </div>
+
+</div>
+
+
+
 </html>
